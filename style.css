@@ -1,0 +1,322 @@
+/* GLOBAL */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI", sans-serif;
+}
+
+html, body{
+  width:100%;
+  height:100%;
+  overflow-x:hidden;
+}
+
+body{
+  min-height:100vh;
+  background:linear-gradient(180deg,#eef4ff,#f5f8ff,#edf2ff);
+  padding:0;
+}
+
+/* APP CONTAINER */
+.app-container{
+  width:100%;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding:14px;
+}
+
+/* MAIN CARD */
+.calculator-card{
+  width:100%;
+  max-width:100%;
+  min-height:calc(100vh - 28px);
+  background:rgba(255,255,255,0.92);
+  border-radius:24px;
+  padding:18px;
+  backdrop-filter:blur(16px);
+  box-shadow:
+    0 10px 35px rgba(0,0,0,0.08),
+    0 0 25px rgba(90,120,255,0.20);
+  display:flex;
+  flex-direction:column;
+}
+
+/* TITLES */
+.app-title{
+  text-align:center;
+  font-size:1.9rem;
+  font-weight:800;
+  color:#2a57ff;
+  text-shadow:0 0 10px rgba(90,120,255,0.35);
+}
+
+.app-subtitle{
+  text-align:center;
+  margin-top:6px;
+  margin-bottom:18px;
+  font-size:0.85rem;
+  color:#555;
+}
+
+/* INSTALL BAR */
+.install-bar{
+  display:none;
+  margin-bottom:14px;
+}
+
+.install-bar.show{
+  display:block;
+}
+
+.install-btn{
+  width:100%;
+  border:none;
+  padding:12px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#1f4fff,#4c6fff);
+  color:#fff;
+  font-weight:800;
+  font-size:0.95rem;
+  cursor:pointer;
+  box-shadow:0 6px 18px rgba(76,111,255,0.30);
+}
+
+/* TABS */
+.tabs{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin-bottom:16px;
+}
+
+.tab-btn{
+  border:none;
+  padding:10px 4px;
+  border-radius:14px;
+  font-weight:700;
+  font-size:0.82rem;
+  cursor:pointer;
+  background:#e9edf6;
+  color:#333;
+  transition:0.25s;
+}
+
+.tab-btn.active{
+  background:linear-gradient(135deg,#4c6fff,#6c8cff);
+  color:#fff;
+  box-shadow:0 0 12px rgba(90,120,255,0.35);
+}
+
+/* TAB CONTENT */
+.tab-content{
+  display:none;
+}
+
+.tab-content.active{
+  display:block;
+}
+
+/* DISPLAY */
+.display-box{
+  margin-bottom:14px;
+}
+
+#display,
+#sciDisplay{
+  width:100%;
+  height:68px;
+  border:none;
+  outline:none;
+  border-radius:16px;
+  padding:10px 16px;
+  font-size:1.8rem;
+  text-align:right;
+  background:#f6f8ff;
+  color:#222;
+  box-shadow:inset 0 0 10px rgba(0,0,0,0.08);
+}
+
+/* BUTTON GRID */
+.button-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+.button-grid button{
+  border:none;
+  padding:16px;
+  font-size:1rem;
+  font-weight:700;
+  border-radius:16px;
+  cursor:pointer;
+  background:#ffffff;
+  color:#222;
+  box-shadow:0 5px 12px rgba(0,0,0,0.08);
+  transition:0.2s;
+}
+
+.operator{
+  background:linear-gradient(135deg,#dce7ff,#c9d8ff) !important;
+  color:#2a57ff !important;
+}
+
+.equals{
+  background:linear-gradient(135deg,#1f4fff,#4c6fff) !important;
+  color:#ffffff !important;
+  font-size:1.2rem !important;
+  font-weight:800 !important;
+  text-shadow:0 0 6px rgba(255,255,255,0.4);
+}
+
+.equals span{
+  color:#ffffff !important;
+  font-weight:800;
+  font-size:1.2rem;
+  display:inline-block;
+}
+
+/* SCIENTIFIC GRID */
+.sci-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:12px;
+}
+
+.sci-grid button{
+  border:none;
+  padding:14px;
+  border-radius:15px;
+  font-weight:700;
+  background:#ffffff;
+  color:#222;
+  box-shadow:0 5px 12px rgba(0,0,0,0.08);
+  cursor:pointer;
+}
+
+/* HEADINGS */
+h2{
+  text-align:center;
+  margin-bottom:12px;
+  color:#2a57ff;
+}
+
+h3{
+  margin-bottom:8px;
+  color:#333;
+}
+
+/* ELECTRICAL SECTIONS */
+.electrical-section{
+  background:#f6f8ff;
+  border-radius:16px;
+  padding:14px;
+  margin-bottom:12px;
+}
+
+.input-group{
+  display:grid;
+  gap:8px;
+  margin-bottom:8px;
+}
+
+.input-group input{
+  padding:11px;
+  border:none;
+  border-radius:12px;
+  background:#ffffff;
+  color:#222;
+  box-shadow:inset 0 0 6px rgba(0,0,0,0.08);
+  outline:none;
+}
+
+/* ACTION BUTTONS */
+.action-buttons{
+  display:flex;
+  justify-content:center;
+}
+
+.action-buttons button{
+  border:none;
+  padding:11px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#4c6fff,#6e89ff);
+  color:#ffffff;
+  font-weight:700;
+  cursor:pointer;
+  width:100%;
+  box-shadow:0 5px 12px rgba(76,111,255,0.25);
+}
+
+.result-text{
+  margin-top:8px;
+  font-weight:700;
+  text-align:center;
+  color:#333;
+}
+
+/* HISTORY */
+.history-list{
+  max-height:320px;
+  overflow-y:auto;
+  background:#f6f8ff;
+  border-radius:14px;
+  padding:10px;
+  box-shadow:inset 0 0 8px rgba(0,0,0,0.08);
+}
+
+.history-item{
+  padding:8px;
+  border-bottom:1px solid #e2e6f0;
+  font-size:0.9rem;
+  color:#333;
+}
+
+.history-item:last-child{
+  border-bottom:none;
+}
+
+.clear-history-btn{
+  margin-top:10px;
+  border:none;
+  padding:10px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#ff4c4c,#ff7a5c) !important;
+  color:#ffffff !important;
+  cursor:pointer;
+  width:100%;
+  font-weight:700;
+}
+
+/* FOOTER */
+.footer-credit{
+  margin-top:auto;
+  padding-top:18px;
+  text-align:center;
+  font-size:0.95rem;
+  font-weight:600;
+  color:#555;
+}
+
+.footer-credit span{
+  color:#2a57ff;
+  font-weight:800;
+  text-shadow:0 0 10px rgba(90,120,255,0.35);
+}
+
+/* LARGER SCREENS */
+@media(min-width:700px){
+  .app-container{
+    max-width:520px;
+    margin:0 auto;
+  }
+
+  .calculator-card{
+    min-height:auto;
+    margin-top:20px;
+  }
+}
