@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ElectroCalc Pro</title>
+
+  <!-- PWA SETTINGS -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#4c6fff" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="ElectroCalc Pro" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app-container">
+    <div class="calculator-card">
+
+      <h1 class="app-title">ElectroCalc Pro</h1>
+      <p class="app-subtitle">Scientific & Electrical Circuit Calculator</p>
+
+      <!-- INSTALL POPUP BAR -->
+      <div id="installBar" class="install-bar">
+        <button id="installBtn" class="install-btn">📲 Install ElectroCalc Pro</button>
+      </div>
+
+      <!-- TABS -->
+      <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('basic')">Basic</button>
+        <button class="tab-btn" onclick="showTab('scientific')">Scientific</button>
+        <button class="tab-btn" onclick="showTab('electrical')">Electrical</button>
+        <button class="tab-btn" onclick="showTab('history')">History</button>
+      </div>
+
+      <!-- BASIC TAB -->
+      <div id="basic" class="tab-content active">
+        <div class="display-box">
+          <input type="text" id="display" readonly placeholder="0" />
+        </div>
+
+        <div class="button-grid">
+          <button onclick="clearDisplay()">C</button>
+          <button onclick="appendValue('(')">(</button>
+          <button onclick="appendValue(')')">)</button>
+          <button class="operator" onclick="appendValue('/')">÷</button>
+
+          <button onclick="appendValue('7')">7</button>
+          <button onclick="appendValue('8')">8</button>
+          <button onclick="appendValue('9')">9</button>
+          <button class="operator" onclick="appendValue('*')">×</button>
+
+          <button onclick="appendValue('4')">4</button>
+          <button onclick="appendValue('5')">5</button>
+          <button onclick="appendValue('6')">6</button>
+          <button class="operator" onclick="appendValue('-')">−</button>
+
+          <button onclick="appendValue('1')">1</button>
+          <button onclick="appendValue('2')">2</button>
+          <button onclick="appendValue('3')">3</button>
+          <button class="operator" onclick="appendValue('+')">+</button>
+
+          <button onclick="appendValue('0')">0</button>
+          <button onclick="appendValue('.')">.</button>
+          <button onclick="backspace()">⌫</button>
+          <button class="equals" onclick="calculateResult()"><span>=</span></button>
+        </div>
+      </div>
+
+      <!-- SCIENTIFIC TAB -->
+      <div id="scientific" class="tab-content">
+        <h2>Scientific Calculator</h2>
+
+        <div class="display-box">
+          <input type="text" id="sciDisplay" readonly placeholder="0" />
+        </div>
+
+        <div class="button-grid">
+          <button onclick="clearSciDisplay()">C</button>
+          <button onclick="appendSciValue('(')">(</button>
+          <button onclick="appendSciValue(')')">)</button>
+          <button class="operator" onclick="appendSciValue('/')">÷</button>
+
+          <button onclick="appendSciValue('7')">7</button>
+          <button onclick="appendSciValue('8')">8</button>
+          <button onclick="appendSciValue('9')">9</button>
+          <button class="operator" onclick="appendSciValue('*')">×</button>
+
+          <button onclick="appendSciValue('4')">4</button>
+          <button onclick="appendSciValue('5')">5</button>
+          <button onclick="appendSciValue('6')">6</button>
+          <button class="operator" onclick="appendSciValue('-')">−</button>
+
+          <button onclick="appendSciValue('1')">1</button>
+          <button onclick="appendSciValue('2')">2</button>
+          <button onclick="appendSciValue('3')">3</button>
+          <button class="operator" onclick="appendSciValue('+')">+</button>
+
+          <button onclick="appendSciValue('0')">0</button>
+          <button onclick="appendSciValue('.')">.</button>
+          <button onclick="backspaceSci()">⌫</button>
+          <button class="equals" onclick="calculateSciResult()"><span>=</span></button>
+        </div>
+
+        <div class="sci-grid" style="margin-top: 16px;">
+          <button onclick="scientificCalc('sqrt')">√x</button>
+          <button onclick="scientificCalc('square')">x²</button>
+          <button onclick="scientificCalc('power')">xʸ</button>
+          <button onclick="scientificCalc('percent')">%</button>
+
+          <button onclick="scientificCalc('sin')">sin</button>
+          <button onclick="scientificCalc('cos')">cos</button>
+          <button onclick="scientificCalc('tan')">tan</button>
+          <button onclick="scientificCalc('log')">log</button>
+
+          <button onclick="scientificCalc('ln')">ln</button>
+          <button onclick="appendSciValue('3.1415926535')">π</button>
+          <button onclick="appendSciValue('2.7182818284')">e</button>
+          <button onclick="scientificCalc('factorial')">x!</button>
+        </div>
+      </div>
+
+      <!-- ELECTRICAL TAB -->
+      <div id="electrical" class="tab-content">
+        <h2>Electrical Calculator</h2>
+
+        <div class="electrical-section">
+          <h3>Ohm’s Law</h3>
+          <div class="input-group">
+            <input type="number" id="voltage" placeholder="Voltage (V)" />
+            <input type="number" id="current" placeholder="Current (I)" />
+            <input type="number" id="resistance" placeholder="Resistance (R)" />
+          </div>
+          <div class="action-buttons">
+            <button onclick="solveOhmsLaw()">Solve</button>
+          </div>
+          <p id="ohmsResult" class="result-text"></p>
+        </div>
+
+        <div class="electrical-section">
+          <h3>Power Calculator</h3>
+          <div class="input-group">
+            <input type="number" id="powerVoltage" placeholder="Voltage (V)" />
+            <input type="number" id="powerCurrent" placeholder="Current (I)" />
+          </div>
+          <div class="action-buttons">
+            <button onclick="calculatePower()">Calculate Power</button>
+          </div>
+          <p id="powerResult" class="result-text"></p>
+        </div>
+
+        <div class="electrical-section">
+          <h3>Series Resistance</h3>
+          <div class="input-group">
+            <input type="text" id="seriesResistors" placeholder="Example: 2,4,6" />
+          </div>
+          <div class="action-buttons">
+            <button onclick="calculateSeriesResistance()">Calculate</button>
+          </div>
+          <p id="seriesResult" class="result-text"></p>
+        </div>
+
+        <div class="electrical-section">
+          <h3>Parallel Resistance</h3>
+          <div class="input-group">
+            <input type="text" id="parallelResistors" placeholder="Example: 2,4,6" />
+          </div>
+          <div class="action-buttons">
+            <button onclick="calculateParallelResistance()">Calculate</button>
+          </div>
+          <p id="parallelResult" class="result-text"></p>
+        </div>
+
+        <div class="electrical-section">
+          <h3>AC Reactance</h3>
+          <div class="input-group">
+            <input type="number" id="frequency" placeholder="Frequency (Hz)" />
+            <input type="number" id="capacitance" placeholder="Capacitance (F)" />
+            <input type="number" id="inductance" placeholder="Inductance (H)" />
+          </div>
+          <div class="action-buttons">
+            <button onclick="calculateReactance()">Calculate</button>
+          </div>
+          <p id="reactanceResult" class="result-text"></p>
+        </div>
+      </div>
+
+      <!-- HISTORY TAB -->
+      <div id="history" class="tab-content">
+        <h2>Calculation History</h2>
+        <div id="historyList" class="history-list"></div>
+        <div class="action-buttons">
+          <button class="clear-history-btn" onclick="clearHistory()">Clear History</button>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="footer-credit">
+        Powered by <span>OMOLADE</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="script.js"></script>
+
+  <!-- SERVICE WORKER -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("./service-worker.js")
+          .then(function () {
+            console.log("Service Worker registered");
+          })
+          .catch(function (error) {
+            console.log("Service Worker registration failed:", error);
+          });
+      });
+    }
+  </script>
+
+</body>
+    </html>
